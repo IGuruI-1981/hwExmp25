@@ -6,9 +6,9 @@ import java.util.SplittableRandom;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello SkyPRO!");
-        String login = "java_skypro_ru";
-        String password = "43nH23";
-        String confirmPassword = "43nH2356";
+        String login = "java_skypro_go";
+        String password = "D_1hWiKjjP_9";
+        String confirmPassword = "D_1hWiKjjP_9";
         System.out.println(verifyLoginAndPassword(login,password,confirmPassword));
 
     }
@@ -38,15 +38,18 @@ public class Main {
                 &&verifyLengthLogin && checkPasswordMatches;
     }
 
-    public static boolean verifyLoginAndPasswordByCharacters(String loginOrPassword) {
+    public static boolean verifyLoginAndPasswordByCharacters(String loginOrPassword) {   //проверка логина и пароля на  латинские буквы, цифры и знак подчеркивания
+        if (loginOrPassword == null) {
+            throw new NullPointerException("Введите логин/пароль");
+        }
         if (loginOrPassword.matches("\\w*")) {
             return true;
         }
-        System.out.println("Введен некорректный символ" + loginOrPassword);
-        return false;
+        throw new NullPointerException(String.format("Введен некорректный символ - '%s'\n", loginOrPassword));
+
     }
 
-    public static boolean verifyLengthPasswordAndConfirmPassword(String passwordAndConfirmPassword) throws WrongPasswordException {
+    public static boolean verifyLengthPasswordAndConfirmPassword(String passwordAndConfirmPassword) throws WrongPasswordException {  //Проверка на длинну пароля
         if (passwordAndConfirmPassword.length() >= 20) {
             throw new WrongPasswordException("Превышенна длинна значения пароля");
         }
@@ -54,14 +57,14 @@ public class Main {
 
     }
 
-    public static boolean verifyLengthLogin(String login) throws WrongLoginException {
+    public static boolean verifyLengthLogin(String login) throws WrongLoginException {  //Проверка на длинну логина
         if (login.length() > 20) {
             throw new WrongLoginException("Превышенна длинна значения логина");
         }
         return true;
     }
 
-    public static boolean checkPasswordMatches(String password, String confirmPassword) {
+    public static boolean checkPasswordMatches(String password, String confirmPassword) {  //Проверка совпадения паролей
         if (password.equals(confirmPassword)){
             return true;
         }

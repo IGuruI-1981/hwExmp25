@@ -1,8 +1,8 @@
 package exeption;
 
-public class WrongPasswordException extends Throwable {
+public class WrongPasswordException extends RuntimeException {
 
     public WrongPasswordException(String message) {
-
+        super(message);
     }
 }
