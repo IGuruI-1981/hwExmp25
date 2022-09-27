@@ -8,7 +8,7 @@ public class Main {
         System.out.println("Hello SkyPRO!");
         String login = "java_skypro_go";
         String password = "D_1hWiKjjP_9";
-        String confirmPassword = "D_1hWiKjjP_9";
+        String confirmPassword = "D_1hWiKjjP_97";
         System.out.println(verifyLoginAndPassword(login,password,confirmPassword));
 
     }
@@ -44,14 +44,15 @@ public class Main {
         }
         if (loginOrPassword.matches("\\w*")) {
             return true;
+        } else {
+            return false;
         }
-        throw new NullPointerException(String.format("Введен некорректный символ - '%s'\n", loginOrPassword));
 
     }
 
-    public static boolean verifyLengthPasswordAndConfirmPassword(String passwordAndConfirmPassword) throws WrongPasswordException {  //Проверка на длинну пароля
+    public static boolean verifyLengthPasswordAndConfirmPassword(String passwordAndConfirmPassword) {  //Проверка на длинну пароля
         if (passwordAndConfirmPassword.length() >= 20) {
-            throw new WrongPasswordException("Превышенна длинна значения пароля");
+            return false;
         }
         return true;
 
@@ -64,10 +65,12 @@ public class Main {
         return true;
     }
 
-    public static boolean checkPasswordMatches(String password, String confirmPassword) {  //Проверка совпадения паролей
-        if (password.equals(confirmPassword)){
+    public static boolean checkPasswordMatches(String password, String confirmPassword) throws WrongPasswordException {  //Проверка совпадения паролей
+        if (password.equals(confirmPassword)) {
             return true;
+        } else {
+            throw new WrongPasswordException("Пароли не совпадают");
         }
-        throw new RuntimeException("Пароли не совпадают");
+
     }
 }
